@@ -311,34 +311,32 @@ async function handleDefaultCommand(args: string[]) {
   }
 }
 
-if (import.meta.main) {
-  const args = process.argv.slice(2);
+const args = process.argv.slice(2);
 
-  if (args.length < 1) {
-    printUsage();
-    process.exit(1);
+if (args.length < 1) {
+  printUsage();
+  process.exit(1);
+}
+
+// コマンドの処理
+const command = args[0];
+
+try {
+  switch (command) {
+    case "ls":
+      await handleLsCommand(args.slice(1));
+      break;
+    case "read":
+      await handleReadCommand(args.slice(1));
+      break;
+    default:
+      // 従来のコマンド (package-name として扱う)
+      await handleDefaultCommand(args);
+      break;
   }
-
-  // コマンドの処理
-  const command = args[0];
-
-  try {
-    switch (command) {
-      case "ls":
-        await handleLsCommand(args.slice(1));
-        break;
-      case "read":
-        await handleReadCommand(args.slice(1));
-        break;
-      default:
-        // 従来のコマンド (package-name として扱う)
-        await handleDefaultCommand(args);
-        break;
-    }
-  } catch (error) {
-    console.error(
-      `Error: ${error instanceof Error ? error.message : String(error)}`,
-    );
-    process.exit(1);
-  }
+} catch (error) {
+  console.error(
+    `Error: ${error instanceof Error ? error.message : String(error)}`,
+  );
+  process.exit(1);
 }

@@ -1,5 +1,6 @@
 {
-  "name": "npm-summary",
+  "name": "@kaiinui/npm-summary",
+  "version": "0.1.1",
   "module": "mod.ts",
   "type": "module",
   "main": "./dist/mod.js",
@@ -13,6 +14,7 @@
   ],
   "scripts": {
     "build": "tsup",
+    "publish:npm": "bun publish --access public",
     "prepublishOnly": "bun run build"
   },
   "tsup": {

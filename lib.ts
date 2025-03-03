@@ -540,8 +540,6 @@ Focus on the most important and useful parts of the API that developers would ne
     apiKey,
   })
 
-  console.log("USING ai")
-
   try {
     // テキスト生成
     const { text } = await generateText({

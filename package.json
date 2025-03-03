@@ -1,0 +1,41 @@
+{
+  "name": "npm-summary",
+  "module": "mod.ts",
+  "type": "module",
+  "main": "./dist/mod.js",
+  "types": "./dist/mod.d.ts",
+  "bin": {
+    "npm-summary": "./dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "prepublishOnly": "bun run build"
+  },
+  "tsup": {
+    "entry": ["mod.ts", "cli.ts"],
+    "format": ["esm"]
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@tsconfig/bun": "^1.0.7",
+    "@types/bun": "latest",
+    "@types/node": "^22.13.8",
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.2"
+  },
+  "dependencies": {
+    "@ai-sdk/google": "^1.1.17",
+    "ai": "^4.1.50",
+    "glob-to-regexp": "^0.4.1",
+    "pako": "^2.1.0",
+    "tinytar": "^0.1.0"
+  },
+  "trustedDependencies": [
+    "@biomejs/biome",
+    "esbuild"
+  ]
+}
